@@ -2,15 +2,15 @@
 	<el-menu
 			:default-active="this.$store.state.menus.editableTabsValue"
 			class="el-menu-vertical-demo"
-			background-color="#545c64"
-			text-color="#fff"
-			active-text-color="#ffd04b">
+
+
+	>
 
 		<router-link to="/index">
 			<el-menu-item index="Index"  @click="selectMenu({name: 'Index', title: '首页'})">
 				<template slot="title">
 					<i class="el-icon-s-home"></i>
-					<span slot="title">首页</span>
+					<span slot="title" >首页</span>
 				</template>
 			</el-menu-item>
 		</router-link>
@@ -20,6 +20,7 @@
 				<i :class="menu.icon"></i>
 				<span>{{menu.title}}</span>
 			</template>
+
 
 			<router-link :to="item.path" v-for="item in menu.children">
 				<el-menu-item :index="item.name" @click="selectMenu(item)">
@@ -43,10 +44,18 @@
 
 			}
 		},
+		//动态监控，保证拿到数据后再动态渲染
 		computed:  {
 			menuList: {
 				get() {
-					return this.$store.state.menus.menuList
+					let ml = this.$store.state.menus.menuList
+					//console.log(ml)
+					console.log("**************")
+					ml.forEach(m => {
+						console.log(m.name);
+					})
+					return ml
+					//return this.$store.state.menus.menuList
 				}
 			}
 		},
@@ -58,9 +67,30 @@
 	}
 </script>
 
+
 <style scoped>
 	.el-menu-vertical-demo {
 		height: 100%;
-		color: #57606f;
+		text-decoration: none;
 	}
+	.el-menu-item{
+		text-decoration: none;
+		border-bottom-color:#ffffff!important;
+	}
+
+	.el-submenu{
+		text-decoration: none;
+		border-bottom-color:#ffffff!important;
+	}
+
+	.a{
+		text-decoration: none;
+	}
+	.span{
+		text-decoration: none;
+		border-bottom-color:#ffffff!important;
+
+
+	}
+
 </style>

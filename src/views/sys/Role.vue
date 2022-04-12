@@ -18,7 +18,7 @@
 				<el-button type="primary" @click="dialogVisible = true">新增</el-button>
 			</el-form-item>
 			<el-form-item>
-				<el-popconfirm title="这是确定批量删除吗？" @confirm="delHandle(null)">
+				<el-popconfirm title="确定批量删除吗？" @confirm="delHandle(null)">
 					<el-button type="danger" slot="reference" :disabled="delBtlStatu">批量删除</el-button>
 				</el-popconfirm>
 			</el-form-item>
@@ -55,7 +55,7 @@
 			</el-table-column>
 
 			<el-table-column
-					prop="statu"
+					prop="statue"
 					label="状态">
 				<template slot-scope="scope">
 					<el-tag size="small" v-if="scope.row.statu === 1" type="success">正常</el-tag>
@@ -75,7 +75,7 @@
 					<el-divider direction="vertical"></el-divider>
 
 					<template>
-						<el-popconfirm title="这是一段内容确定删除吗？" @confirm="delHandle(scope.row.id)">
+						<el-popconfirm title="确定删除吗？" @confirm="delHandle(scope.row.id)">
 							<el-button type="text" slot="reference">删除</el-button>
 						</el-popconfirm>
 					</template>
@@ -119,8 +119,8 @@
 				</el-form-item>
 
 
-				<el-form-item label="状态" prop="statu" label-width="100px">
-					<el-radio-group v-model="editForm.statu">
+				<el-form-item label="状态" prop="statue" label-width="100px">
+					<el-radio-group v-model="editForm.statue">
 						<el-radio :label=0>禁用</el-radio>
 						<el-radio :label=1>正常</el-radio>
 					</el-radio-group>
@@ -169,7 +169,7 @@
 		data() {
 			return {
 				searchForm: {},
-				delBtlStatu: true,
+				delBtlStatue: true,
 
 				total: 0,
 				size: 10,
@@ -189,7 +189,7 @@
 					code: [
 						{required: true, message: '请输入唯一编码', trigger: 'blur'}
 					],
-					statu: [
+					statue: [
 						{required: true, message: '请选择状态', trigger: 'blur'}
 					]
 				},
@@ -227,7 +227,7 @@
 				console.log(val)
 				this.multipleSelection = val;
 
-				this.delBtlStatu = val.length == 0
+				this.delBtlStatue = val.length == 0
 			},
 
 			handleSizeChange(val) {

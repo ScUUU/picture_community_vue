@@ -75,7 +75,7 @@
 					<el-divider direction="vertical"></el-divider>
 
 					<template>
-						<el-popconfirm title="这是一段内容确定删除吗？" @confirm="delHandle(scope.row.id)">
+						<el-popconfirm title="确定删除？" @confirm="delHandle(scope.row.id)">
 							<el-button type="text" slot="reference">删除</el-button>
 						</el-popconfirm>
 					</template>
@@ -198,7 +198,12 @@
 		methods: {
 			getMenuTree() {
 				this.$axios.get("/sys/menu/list").then(res => {
+
+					console.log("mennuuutree")
+					console.log(res.data.data)
+
 					this.tableData = res.data.data
+
 				})
 			},
 			submitForm(formName) {

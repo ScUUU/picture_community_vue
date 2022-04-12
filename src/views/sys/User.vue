@@ -42,7 +42,7 @@
 					label="头像"
 					width="50">
 				<template slot-scope="scope">
-					<el-avatar size="small" :src="scope.row.avatar"></el-avatar>
+					<el-avatar size="small" :src="scope.row.avatar" style="background-color: transparent"></el-avatar>
 				</template>
 			</el-table-column>
 
@@ -64,16 +64,16 @@
 					label="邮箱">
 			</el-table-column>
 			<el-table-column
-					prop="phone"
-					label="手机号">
+					prop="birthday"
+					label="生日">
 			</el-table-column>
 
 			<el-table-column
-					prop="statu"
+					prop="statue"
 					label="状态">
 				<template slot-scope="scope">
-					<el-tag size="small" v-if="scope.row.statu === 1" type="success">正常</el-tag>
-					<el-tag size="small" v-else-if="scope.row.statu === 0" type="danger">禁用</el-tag>
+					<el-tag size="small" v-if="scope.row.statue === 1" type="success">正常</el-tag>
+					<el-tag size="small" v-else-if="scope.row.statue === 0" type="danger">禁用</el-tag>
 				</template>
 
 			</el-table-column>
@@ -141,12 +141,8 @@
 				<el-form-item label="邮箱"  prop="email" label-width="100px">
 					<el-input v-model="editForm.email" autocomplete="off"></el-input>
 				</el-form-item>
-				<el-form-item label="手机号"  prop="phone" label-width="100px">
-					<el-input v-model="editForm.phone" autocomplete="off"></el-input>
-				</el-form-item>
-
-				<el-form-item label="状态"  prop="statu" label-width="100px">
-					<el-radio-group v-model="editForm.statu">
+				<el-form-item label="状态"  prop="statue" label-width="100px">
+					<el-radio-group v-model="editForm.statue">
 						<el-radio :label="0">禁用</el-radio>
 						<el-radio :label="1">正常</el-radio>
 					</el-radio-group>
@@ -185,7 +181,7 @@
 
 <script>
 	export default {
-		name: "Role",
+		name: "User",
 		data() {
 			return {
 				searchForm: {},
@@ -205,13 +201,14 @@
 				editFormRules: {
 					username: [
 						{required: true, message: '请输入用户名称', trigger: 'blur'}
-					],
-					email: [
-						{required: true, message: '请输入邮箱', trigger: 'blur'}
-					],
-					statu: [
-						{required: true, message: '请选择状态', trigger: 'blur'}
 					]
+					,
+					 email: [
+					 	{required: true, message: '请输入邮箱', trigger: 'blur'}
+					 ],
+					 statue: [
+					 	{required: true, message: '请选择状态', trigger: 'blur'}
+					 ]
 				},
 
 				multipleSelection: [],
@@ -281,6 +278,8 @@
 						size: this.size
 					}
 				}).then(res => {
+					console.log("user table data")
+					console.log(res)
 					this.tableData = res.data.data.records
 					this.size = res.data.data.size
 					this.current = res.data.data.current

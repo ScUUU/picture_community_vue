@@ -1,33 +1,24 @@
 <template>
     <el-row type="flex" class="row-bg" justify="center">
-        <el-col :xl="6" :lg="7">
-            <h3>欢迎,请登录！</h3>
-            <el-image :src="require('@/assets/cloud.png')" style="height: 200px; width: 200px;"></el-image>
 
-        </el-col>
+        <el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="80px">
+            <el-form-item label="用户名" prop="username" style="width: 380px;" class="formitem">
+                <el-input v-model="loginForm.username" class="forminput" ></el-input>
+            </el-form-item>
+            <el-form-item label="密码" prop="password"  style="width: 380px;"lass="formitem">
+                <el-input v-model="loginForm.password" type="password" class="forminput"></el-input>
+            </el-form-item>
+            <el-form-item label="验证码" prop="code"  style="width: 380px;"lass="formitem">
+                <el-input v-model="loginForm.code"  style="width: 172px; float: left" maxlength="5" class="forminput"></el-input>
+                <el-image :src="captchaImg" class="captchaImg" @click="getCaptcha"></el-image>
+            </el-form-item>
 
-        <el-col :span="1">
-            <el-divider direction="vertical"></el-divider>
-        </el-col>
-        <el-col :xl="6" :lg="7">
-            <el-form :model="loginForm" :rules="rules" ref="loginForm" label-width="80px">
-                <el-form-item label="用户名" prop="username" style="width: 380px;">
-                    <el-input v-model="loginForm.username"></el-input>
-                </el-form-item>
-                <el-form-item label="密码" prop="password"  style="width: 380px;">
-                    <el-input v-model="loginForm.password" type="password"></el-input>
-                </el-form-item>
-                <el-form-item label="验证码" prop="code"  style="width: 380px;">
-                    <el-input v-model="loginForm.code"  style="width: 172px; float: left" maxlength="5"></el-input>
-                    <el-image :src="captchaImg" class="captchaImg" @click="getCaptcha"></el-image>
-                </el-form-item>
+            <el-form-item>
+                <el-button type="primary" @click="submitForm('loginForm')" style="background-color: cadetblue; border-color: white">立即登录</el-button>
+                <el-button @click="resetForm('loginForm')" style="background-color: lightcoral; border-color: white">重置</el-button>
+            </el-form-item>
+        </el-form>
 
-                <el-form-item>
-                    <el-button type="primary" @click="submitForm('loginForm')">立即登录</el-button>
-                    <el-button @click="resetForm('loginForm')">重置</el-button>
-                </el-form-item>
-            </el-form>
-        </el-col>
     </el-row>
 
 </template>
@@ -40,8 +31,8 @@
         data() {
             return {
                 loginForm: {
-                    username: '',
-                    password: '',
+                    username: 'admin',
+                    password: '111111',
                     code: '',
                     token: ''
                 },
@@ -101,10 +92,33 @@
     }
 </script>
 
-<style scoped>
-    .el-form-item__label{
-color: #333333;
+<style>
+    .forminput input.el-input__inner{
+        background-color: transparent;
     }
+
+    .forminput input{
+        color: white;
+    }
+
+</style>
+
+<style scoped>
+    .el-form-item{
+        margin-top: 30px;
+
+    }
+
+    .el-form{
+        position: relative;
+        width: 450px;
+        height: 300px;
+        border: 1px solid rgba(60, 60, 60, .4);
+        border-top-color: rgba(255, 255, 255, .4);
+        border-left-color: rgba(255, 255, 255, .4);
+        background: rgba(130,130,130,.3);
+    }
+
     .el-row {
         background-color: #baccd9;
         background-image: url("../assets/bkg.png");
@@ -116,9 +130,6 @@ color: #333333;
         justify-content: center;
     }
 
-    .el-divider {
-        height: 200px;
-    }
 
     .captchaImg {
         float: left;

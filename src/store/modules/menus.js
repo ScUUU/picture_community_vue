@@ -20,6 +20,8 @@ export default {
 	mutations: {
 		setMenuList(state, menus) {
 			state.menuList = menus
+			console.log("$$$$$$$$$$$$$$$$$")
+			console.log(menus)
 		},
 		setPermList(state, perms) {
 			state.permList = perms
@@ -45,7 +47,6 @@ export default {
 		resetState: (state) => {
 			state.menuList = []
 			state.permList = []
-
 			state.hasRoutes = false
 			state.editableTabsValue = 'Index'
 			state.editableTabs = [{

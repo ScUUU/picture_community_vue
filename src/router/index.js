@@ -93,9 +93,7 @@ router.beforeEach((to, from, next) => {
       // 拿到用户权限
       store.commit("setPermList", res.data.data.authoritys)
 
-      console.log("menu list  ")
       console.log(store.state.menus.menuList)
-      //console.log(store.state.token)
 
       // 动态绑定路由
       let newRoutes = router.options.routes
@@ -107,7 +105,7 @@ router.beforeEach((to, from, next) => {
             // 转成路由
             let route = menuToRoute(e)
 
-            // 吧路由添加到路由管理中
+            // 把路由添加到路由管理中
             if (route) {
               newRoutes[0].children.push(route)
             }
@@ -116,8 +114,8 @@ router.beforeEach((to, from, next) => {
         }
       })
 
-      console.log("newRoutes")
-      console.log(newRoutes)
+      // console.log("newRoutes")
+      // console.log(newRoutes)
       router.addRoutes(newRoutes)
 
       hasRoute = true

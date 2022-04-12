@@ -7,11 +7,11 @@
 		</el-aside>
 		<el-container>
 			<el-header>
-				<strong>PictureCommunity后台管理</strong>
+				<strong>Picture Community</strong>
 
 				<div class="header-avatar">
 
-					<el-avatar size="medium" :src="userInfo.avatar"></el-avatar>
+					<el-avatar size="medium" :src="userInfo.avatar" style="background-color: transparent"></el-avatar>
 
 					<el-dropdown>
 						<span class="el-dropdown-link">
@@ -25,8 +25,8 @@
 						</el-dropdown-menu>
 					</el-dropdown>
 
-					<el-link href="https://markerhub.com" target="_blank">网站</el-link>
-					<el-link href="https://space.bilibili.com/13491144" target="_blank">B站</el-link>
+<!--					<el-link href="https://markerhub.com" target="_blank">网站</el-link>-->
+<!--					<el-link href="https://space.bilibili.com/13491144" target="_blank">B站</el-link>-->
 				</div>
 
 			</el-header>
@@ -101,7 +101,8 @@
 	}
 
 	.el-header {
-		background-color: #17B3A3;
+		background-color: #D3DCE6 ;
+
 		color: #333;
 		text-align: center;
 		line-height: 60px;
